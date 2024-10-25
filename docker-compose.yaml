@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres
+    container_name: postgres1
+    labels:
+      - "environment=dev"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: supersecretpassword
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    networks:
+      - default
+    
+    restart: always
+
+networks:
+  default:
+    name: gopher_network
+    driver: bridge
